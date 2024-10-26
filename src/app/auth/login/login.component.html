@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center align-items-center">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <img src="../../../assets/login_bg_img.jpg" class="img-fluid rounded-top" alt="" />
+
+        </div>
+        <div class="col-md-4 d-flex justify-content-center align-items-center login-section">
+            <div class=" screen">
+                <div class="screen__content">
+                    <h2 class="text-center">Login</h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login">
+                        <div class="login__field">
+                            <i class="login__icon bi bi-envelope"></i>
+                            <input id="email" type="email" class="login__input" placeholder="Email"
+                                formControlName="email"
+                                [ngClass]="{'is-invalid': formControl['email'].invalid && (formControl['email'].dirty || formControl['email'].touched)}">
+                            <div *ngIf="formControl['email'].invalid && (formControl['email'].dirty || formControl['email'].touched)"
+                                class="text-danger">
+                                <small *ngIf="formControl['email'].errors?.['required']">Email is required.</small>
+                                <small *ngIf="formControl['email'].errors?.['email']">Invalid email format.</small>
+                            </div>
+                        </div>
+
+                        <div class="login__field">
+                            <i class="login__icon bi bi-lock"></i>
+                            <input id="password" type="password" class="login__input" placeholder="Password"
+                                formControlName="password"
+                                [ngClass]="{'is-invalid': formControl['password'].invalid && (formControl['password'].dirty || formControl['password'].touched)}">
+                            <div *ngIf="formControl['password'].invalid && (formControl['password'].dirty || formControl['password'].touched)"
+                                class="text-danger">
+                                <small *ngIf="formControl['password'].errors?.['required']">Password is
+                                    required.</small>
+                                <small *ngIf="formControl['password'].errors?.['minlength']">Password must be at
+                                    least 6
+                                    characters long.</small>
+                            </div>
+                        </div>
+
+                        <div *ngIf="errorMessage" class="text-danger mb-3">{{ errorMessage }}</div>
+
+                        <button type="submit"
+                            class="button login__submit d-flex justify-content-center align-items-center w-100"
+                            [disabled]="loginForm.invalid">
+                            <span class="button__text">Login</span>
+                            <i class="button__icon fas fa-chevron-right"></i>
+                        </button>
+                    </form>
+                    <!-- <div class="social-login">
+                        <h3>Log in via</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-login__icon fab fa-instagram"></a>
+                            <a href="#" class="social-login__icon fab fa-facebook"></a>
+                            <a href="#" class="social-login__icon fab fa-twitter"></a>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- <div class="screen__background">
+                    <span class="screen__background__shape screen__background__shape4"></span>
+                    <span class="screen__background__shape screen__background__shape3"></span>
+                    <span class="screen__background__shape screen__background__shape2"></span>
+                    <span class="screen__background__shape screen__background__shape1"></span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

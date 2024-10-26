@@ -1,0 +1,61 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+app-header {
+  position: fixed; /* Fixes the header at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px; /* Adjust the height as needed */
+  color: white;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.d-flex {
+  display: flex;
+  flex: 1; /* Allow it to fill remaining space */
+  margin-top: 60px; /* Push content down below the header */
+}
+
+app-sidebar {
+  position: fixed; /* Fixes the sidebar */
+  top: 80px; /* Below the header */
+  bottom: 0; /* Stays at the bottom */
+  width: 250px; /* Set a fixed width */
+  // background-color: hsl(204, 5%, 15%);
+  color: white;
+}
+
+.main-content {
+  margin-left: 250px; /* Aligns next to the sidebar */
+  padding: 20px; /* Optional padding */
+  overflow-y: auto; /* Enables scrolling for the main content */
+  height: calc(100vh - 60px); /* Full height minus the header */
+}
+
+.footer-section {
+  position: fixed; /* Fixes the footer at the bottom */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: auto;
+  background-color: hsl(204, 5%, 18%);
+  color: white;
+  padding: 10px; /* Optional padding */
+  text-align: center; /* Center the footer text */
+}
+
+// .footer-section {
+//   // height: auto;
+//   // width: auto;
+//   background-color: hsl(204, 5%, 18%);
+//   color: white;
+// }

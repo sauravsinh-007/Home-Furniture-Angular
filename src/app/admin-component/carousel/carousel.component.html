@@ -1,0 +1,118 @@
+<!-- table -->
+
+<div class="container-fluid mt-4" *ngIf="isCarouserTable">
+    <h2 class="page-management">Carousel </h2>
+    <div class="table-responsive">
+        <div class="d-flex align-items-center justify-content-between pt-5">
+            <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Search by any field">
+            </mat-form-field>
+            <button type="button" class="btn btn-primary" (click)="addNewCarousel()">Add New Carousel</button>
+        </div>
+        <table mat-table [dataSource]="carouseldataSource" matSort class="table table-bordered">
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef>Image</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    <img [src]="getImageSrc(element.image)" class="avatar" alt="Page Image" width="50">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="pageName">
+                <th mat-header-cell *matHeaderCellDef>Page Name</th>
+                <td mat-cell *matCellDef="let element">{{ element.pageName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle [checked]="element.status" (change)="toggleStatus(element)">
+                        {{ element.status ? 'Active' : 'Inactive' }}
+                    </mat-slide-toggle>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    <button type="button" class="btn btn-warning btn-sm" (click)="editCarousel(element)">Edit</button>
+                    <button type="button" class="btn btn-danger btn-sm ml-2"
+                        (click)="deleteCarousel(element._id)">Delete</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="carouseldisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: carouseldisplayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    </div>
+</div>
+
+<!-- Carousel form -->
+
+<div class="container mt-4" *ngIf="isCarouserForm">
+    <div class="card">
+        <div class="card-header">
+            <h2>Add/Edit Page</h2>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="carouselForm">
+
+                <div class="row mt-4">
+                    <label for="pageName" class="form-label col-sm-3">Page Name:</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="pageName" formControlName="pageName" class="form-control"
+                            placeholder="Enter Page Name" />
+                        <div *ngIf="carouselForm.get('pageName')?.invalid && carouselForm.get('pageName')?.touched"
+                            class="text-danger">
+                            Page Name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <label for="description" class="form-label col-sm-3">Description:</label>
+                    <div class="col-sm-4">
+                        <textarea id="description" formControlName="description" class="form-control"
+                            placeholder="Enter Description"></textarea>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <label for="image" class="form-label col-sm-3">Image:</label>
+                    <div class="col-sm-4">
+                        <input type="file" id="image" (change)="onFileSelected($event)" class="form-control" />
+                        <div *ngIf="carouselForm.get('image')?.value" class="mt-2">
+                            <img [src]="carouselForm.get('image')?.value" alt="Selected Image" width="100" />
+                            <button type="button" class="btn btn-danger mt-2 mx-3" (click)="removeImage()">
+                                <i class="bi bi-trash "></i> 
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-4">
+                    <label for="status" class="form-label col-sm-3">Status:</label>
+                    <div class="col-sm-4">
+                        <mat-slide-toggle formControlName="status"></mat-slide-toggle>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-sm-4">
+                        <button type="button" (click)="onSubmit()" class="btn btn-success">Submit</button>
+                        <button type="button" (click)="onCancel()" class="btn btn-secondary ml-2">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

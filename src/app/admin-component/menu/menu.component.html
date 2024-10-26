@@ -1,0 +1,132 @@
+<div class="container-fluid mt-4" *ngIf="isMenuTable">
+    <h2 class="menu ml-3"> MENU</h2>
+
+    <div class="table-responsive">
+        <div class="d-flex align-items-center justify-content-between pt-5">
+            <div class="search-input--wrapper">
+                <mat-form-field appearance="outline" class="h-100-">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Search by any field">
+                </mat-form-field>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary" (click)="addNewMenu()">New Add Menu</button>
+            </div>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="parentMenu">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Parent Menu</th>
+                <td mat-cell *matCellDef="let element">{{ element.parentMenu }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="menuDescription">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Menu Description</th>
+                <td mat-cell *matCellDef="let element">{{ element.menuDescription }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="order">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Order</th>
+                <td mat-cell *matCellDef="let element">{{ element.order }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle [checked]="element.status" (change)="toggleStatus(element)">
+                        {{ element.status ? 'Active' : 'Inactive' }}
+                    </mat-slide-toggle>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-button class="btn btn-warning" (click)="editMenu(element)">Edit</button>
+                    <button mat-button color="warn" class="btn btn-danger mx-3"
+                        (click)="deleteMenu(element._id)">Delete</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    </div>
+</div>
+
+
+<!-- table form -->
+
+<div class="container mt-4" *ngIf="isMenuForm">
+    <div class="card">
+        <div class="card-header">
+            <h3>Add Menu</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="menuForm">
+                <div class="row mt-4">
+                    <label for="name" class="form-label col-sm-3">Menu Name:</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="name" formControlName="name" class="form-control"
+                            placeholder="Enter Menu Name" />
+                        <div *ngIf="menuForm.get('name')?.invalid && menuForm.get('name')?.touched" class="text-danger">
+                            Add Menu
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <label for="parentMenu" class="form-label col-sm-3">Parent Menu:</label>
+                    <div class="col-sm-4">
+                        <select id="parentMenu" formControlName="parentMenu" class="form-select form-control">
+                            <option value="" selected>Select a Parent Menu</option>
+                            <option *ngFor="let option of parentMenuOptions" [value]="option">{{ option }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <label for="menuDescription" class="form-label col-sm-3">Menu Description:</label>
+                    <div class="col-sm-4">
+                        <input type="text" id="menuDescription" formControlName="menuDescription"
+                            class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <label for="order" class="form-label col-sm-3">Order:</label>
+                    <div class="col-sm-4">
+                        <input type="number" id="order" formControlName="order" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <label for="status" class="form-label col-sm-2">Status:</label>
+                    <div class="col-sm-4">
+                        <mat-slide-toggle formControlName="status">
+                            {{ menuForm.get('status')?.value ? 'Active' : 'Inactive' }}
+                        </mat-slide-toggle>
+                    </div>
+
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-sm-4 offset-sm-2">
+                        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+                        <button type="submit" (click)="onCancel()" class="btn btn-danger ml-3">Cancel</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+/* Scrollable container for small screens */
+// .table-responsive {
+//   width: 100%;
+//   overflow-x: auto;
+//   //   margin: 25px;
+//   //   border: 1px solid black;
+// }
+
+// /* Hide certain columns on small screens */
+// @media (max-width: 768px) {
+//   th.mat-header-cell:first-child,
+//   td.mat-cell:first-child {
+//     display: none; /* Hide the ID column */
+//   }
+// }
+
+// @media (max-width: 480px) {
+//   th.mat-header-cell:nth-child(2),
+//   td.mat-cell:nth-child(2) {
+//     display: none; /* Hide the Name column */
+//   }
+// }
+
+/* Apply to header row background color and text color */
+// ::ng-deep table th.mat-header-cell {
+//   background-color: black !important;
+//   // color: white !important;
+// }
+
+// ::ng-deep table .mdc-data-table__content,
+// .mat-mdc-row,
+// .mat-mdc-paginator,
+// .mat-mdc-paginator-range-actions {
+//   background-color: white !important;
+//   color: black !important;
+
+//   mat-icon-button {
+//     color: black !important;
+//   }
+// }
+// /* Add borders to the table, header, and row columns */
+// ::ng-deep table,
+// ::ng-deep th.mat-header-cell,
+// ::ng-deep td.mat-cell,
+// ::ng-deep mat-mdc-paginator-container {
+//   border: 1px solid black !important;
+// }
+
+// /* Optional: Add padding and alignment */
+// ::ng-deep table th.mat-header-cell,
+// ::ng-deep table td.mat-cell {
+//   padding: 8px;
+//   text-align: left;
+// }
+
+.search-input--wrapper {
+  height: 56px;
+}
+
+.large-checkbox {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.role {
+  font-weight: 700;
+  font-size: xx-large;
+}
+
+.btn {
+  border-radius: 25px;
+}
