@@ -10,52 +10,43 @@ body {
 }
 
 app-header {
-  position: fixed; /* Fixes the header at the top */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px; /* Adjust the height as needed */
+  height: 60px;
   color: white;
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000;
 }
 
 .d-flex {
   display: flex;
-  flex: 1; /* Allow it to fill remaining space */
-  margin-top: 60px; /* Push content down below the header */
+  flex: 1;
+  margin-top: 60px;
 }
-
 app-sidebar {
-  position: fixed; /* Fixes the sidebar */
-  top: 80px; /* Below the header */
-  bottom: 0; /* Stays at the bottom */
-  width: 250px; /* Set a fixed width */
-  // background-color: hsl(204, 5%, 15%);
+  position: fixed;
+  top: 80px;
+  bottom: 0;
+  width: 250px;
   color: white;
 }
 
 .main-content {
-  margin-left: 250px; /* Aligns next to the sidebar */
-  padding: 20px; /* Optional padding */
-  overflow-y: auto; /* Enables scrolling for the main content */
-  height: calc(100vh - 60px); /* Full height minus the header */
+  margin-left: 250px;
+  padding: 20px;
+  overflow-y: auto;
+  height: calc(100vh - 60px);
 }
 
 .footer-section {
-  position: fixed; /* Fixes the footer at the bottom */
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   top: auto;
   background-color: hsl(204, 5%, 18%);
   color: white;
-  padding: 10px; /* Optional padding */
-  text-align: center; /* Center the footer text */
+  padding: 10px;
+  text-align: center;
 }
-
-// .footer-section {
-//   // height: auto;
-//   // width: auto;
-//   background-color: hsl(204, 5%, 18%);
-//   color: white;
-// }

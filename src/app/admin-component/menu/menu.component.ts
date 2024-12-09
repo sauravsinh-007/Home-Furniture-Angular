@@ -61,7 +61,7 @@ export class MenuComponent implements OnInit {
   }
 
   getData() {
-    
+
     this._adminApiService.getmenus().subscribe(menus => {
       this.MENU_DATA = menus
       this.dataSource = new MatTableDataSource(this.MENU_DATA);
@@ -70,7 +70,7 @@ export class MenuComponent implements OnInit {
 
 
       this.parentMenuOptions = this.MENU_DATA
-        .filter(menu => !menu.parentMenu) // Keep only menus without a parent
+        .filter(menu => !menu.parentMenu)
         .map(menu => menu.name);
     })
   }
@@ -158,7 +158,7 @@ export class MenuComponent implements OnInit {
       this._adminApiService.deleteMenu(element).subscribe({
         next: () => {
           console.log('Menu deleted successfully');
-          this.getData(); // Refresh the data
+          this.getData();
         },
         error: (err) => {
           console.error('Error deleting menu:', err);
@@ -168,20 +168,6 @@ export class MenuComponent implements OnInit {
   }
 
 
-  // deleteMenu(element: any) {
-  //   console.log('element', element)
-  //   if (confirm('Are you sure you want to delete this item?')) {
-  //     this._adminApiService.deleteMenu(element).subscribe({
-  //       next: () => {
-  //         console.log('Role deleted successfully');
-  //         this.getData();
-  //       },
-  //       error: (err) => {
-  //         console.error('Error deleting role:', err);
-  //       },
-  //     });
-  //   }
-  // }
 
   addNewMenu() {
     this.isMenuForm = true

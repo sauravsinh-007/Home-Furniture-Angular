@@ -33,12 +33,9 @@ export class ProfileComponent implements OnInit {
   isUserForm: boolean = false;
   isUserTable: boolean = true;
   defaultImage: string = "../../../assets/user_img.jpg"
-  // defaultImage: string = '../../../assets/errorImage.jpg'
 
 
   USER_DATA: UserData[] = [
-    // { name: 'John Doe', role: 'Admin', email: 'john@example.com', password: 'password123', mobileNumber: '1234567890', status: true, photo: 'path/to/photo1.jpg' },
-    // { name: 'Jane Smith', role: 'User', email: 'jane@example.com', password: 'password123', mobileNumber: '0987654321', status: false, photo: 'path/to/photo2.jpg' },
   ];
 
   displayedColumns: string[] = ["photo", "name", "role", "email", "mobileNumber", "status", "actions"];
@@ -94,25 +91,16 @@ export class ProfileComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    // const file = event.target.files[0];
-    // if (file) {
-    //   const reader = new FileReader();
-    //   reader.onload = (e) => {
-    //     this.userForm.patchValue({
-    //       photo: e.target?.result
-    //     });
-    //   };
-    //   reader.readAsDataURL(file);
-    // }
+
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.userForm.patchValue({
-          photo: e.target?.result as string // Base64 string
+          photo: e.target?.result as string
         });
       };
-      reader.readAsDataURL(file); // Convert file to Base64
+      reader.readAsDataURL(file);
     }
   }
 

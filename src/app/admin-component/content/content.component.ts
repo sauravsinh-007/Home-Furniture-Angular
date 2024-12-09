@@ -85,12 +85,10 @@ export class ContentComponent {
       reader.onload = (e) => {
         if (type === 'image') {
           this.contentForm.patchValue({
-            // Base64 string
             image: e.target?.result as string
           });
         }
       };
-      // Convert file to Base64
       reader.readAsDataURL(file);
     }
   }

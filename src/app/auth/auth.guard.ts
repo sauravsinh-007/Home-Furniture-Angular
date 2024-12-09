@@ -27,12 +27,11 @@ import { Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
-  const token = localStorage.getItem('jwtToken'); // Check for the token
-
+  const token = localStorage.getItem('jwtToken');
   if (token) {
-    return true; // User is authenticated
+    return true;
   } else {
-    router.navigate(['/login']); // Redirect to login if not authenticated
-    return false; // User is not authenticated
+    router.navigate(['/login']);
+    return false;
   }
 };

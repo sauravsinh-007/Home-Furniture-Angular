@@ -142,20 +142,7 @@ export class RoleComponent implements OnInit {
   }
 
 
-  // deleteRole(element: any) {
-  //   if (confirm('Are you sure you want to delete this item?')) {
-  //     console.log('Delete:', element);
-  //     this._adminApiService.deleteRole(element._id).subscribe({
-  //       next: () => {
-  //         console.log('user deleted successfully')
-  //         this.getData()
-  //       },
-  //       error(err) {
-  //         console.log('err', err)
-  //       },
-  //     })
-  //   }
-  // }
+
 
 
   deleteRole(element: any) {
@@ -165,8 +152,6 @@ export class RoleComponent implements OnInit {
         next: () => {
           console.log('Role deleted successfully');
           this.getData();
-          // this.ROLE_DATA = this.ROLE_DATA.filter(role => role._id !== element); // Remove from local array
-          // this.dataSource.data = this.ROLE_DATA; // Update the data source
         },
         error: (err) => {
           console.error('Error deleting role:', err);
